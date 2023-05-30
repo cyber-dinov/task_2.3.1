@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="FacetManager">
-    <facet type="Spring" name="Spring">
-      <configuration />
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="28d18d9a-b6dc-4755-9c4b-439fa7638b2e" />
+          <factory-entry name="localContainerEntityManagerFactoryBean" />
+          <factory-entry name="spring-mvc" value="28d18d9a-b6dc-4755-9c4b-439fa7638b2e" />
+        </datasource-mapping>
+        <naming-strategy-map />
+      </configuration>
     </facet>
   </component>
 </module>
