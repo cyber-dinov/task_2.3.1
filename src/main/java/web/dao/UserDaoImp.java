@@ -19,70 +19,34 @@ public class UserDaoImp implements UserDao{
         this.entityManager = entityManager;
     }
 
-
     @Override
-    public void add(User user){
-
-        try {
-            entityManager.persist(user);
-            entityManager.flush();
-        }
-        catch (Exception ex){
-            entityManager.getTransaction().rollback();
-            System.out.println("SQLException: " + ex.getMessage());
-        }
+    public void add(User user) {
+        entityManager.persist(user);
+        entityManager.flush();
     }
 
     @Override
     public User getById(Long id){
-
-        try {
-            return entityManager.find(User.class, id);
-        }
-        catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw new IllegalArgumentException("getUsers transaction exception");
-        }
-
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public void delete(Long id){
-        try {
-            entityManager.remove(entityManager.find(User.class, id));
-        }
-        catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            System.out.println("SQLException: " + ex.getMessage());
-        }
+        entityManager.remove(entityManager.find(User.class, id));
     }
 
     @Override
     public void update(User user, Long id){
-        try{
-            User user1 = entityManager.find(User.class, id);
-            entityManager.merge(user1);
-            entityManager.remove(user1);
-            entityManager.merge(user);
-            entityManager.flush();
-
-        }
-        catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            System.out.println("SQLException: " + ex.getMessage());
-        }
+        User user1 = entityManager.find(User.class, id);
+        entityManager.merge(user1);
+        entityManager.remove(user1);
+        entityManager.merge(user);
+        entityManager.flush();
     }
 
     @Override
     public List<User> getUsers() {
-        try {
-            TypedQuery<User> getAllUsersQuery = entityManager.createQuery("FROM User", User.class);
-            return getAllUsersQuery.getResultList();
-        }
-        catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw new IllegalArgumentException("getUsers transaction exception");
-        }
-
+        TypedQuery<User> getAllUsersQuery = entityManager.createQuery("FROM User", User.class);
+        return getAllUsersQuery.getResultList();
     }
 }

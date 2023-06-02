@@ -16,8 +16,18 @@
     <tr th:each="user:${users}">
       <td th:text="${user.name}"></td>
       <td th:text="${user.lastName}"></td>
-      <td><a th:href="@{/user-edit/{id} (id=${user.id})}">Edit user</a></td>
-      <td><a th:href="@{/user-delete/{id} (id=${user.id})}">Delete user</a></td>
+        <td>
+            <form action="#" th:action="@{/user-edit/{id} (id=${user.id})}" method="get">
+
+                <input type="submit" value="Edit user">
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{/user-delete/{id} (id=${user.id})}" th:method="delete">
+
+                <input type="submit" value="Delete user">
+            </form>
+        </td>
     </tr>
   </table>
   <p><a href="/user-save">Add user</a></p>
